@@ -18,52 +18,33 @@ namespace _2021_Sortieralgorithmen
                 return arr;
             }
 
-            Sort(arr, 0, arr.Length - 1);
-
+            QuickSortArray(arr, 0, arr.Length - 1);
             return arr;
         }
 
-        private void Sort(int[] arr, int start, int end)
+        static int[] QuickSortArray(int[] array, int leftIndex, int rightIndex)
         {
-            if (start < end)
+            var i = leftIndex;
+            var j = rightIndex;
+            var pivot = array[leftIndex];
+            while (i <= j)
             {
-                //Pivot Element
-                int splitPoint = Split(arr, start, end);
-                //Console.WriteLine("Pivo: " + arr[splitPoint] + "index: " + splitPoint + "\r\n");
-                Sort(arr, start, splitPoint - 1);
-                Sort(arr, splitPoint, end);
+                while (array[i] < pivot) { i++; }
+                while (array[j] > pivot) { j--; }
+                if (i <= j)
+                {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    i++;
+                    j--;
+                }
             }
-        }
-
-        private int Split(int[] arr, int start, int end)
-        {
-            int left = start + 1;
-            int right = end;
-            int pivot = arr[start];
-
-            while (true)
-            {
-                //Moving Left
-                while (left <= right && arr[left] < pivot)
-                    left++;
-
-                //Moving Right
-                while (right > left && arr[right] > pivot)
-                    right--;
-
-               if (left >= right) break;
-
-                //swap items
-                int temp = arr[left];
-                arr[left] = arr[right];
-                arr[right] = temp;
-                left++;
-                right--;
-            }
-
-            arr[start] = arr[left - 1];
-            arr[left - 1] = pivot;
-            return left;
+            if (leftIndex < j)
+                QuickSortArray(array, leftIndex, j);
+            if (i < rightIndex)
+                QuickSortArray(array, i, rightIndex);
+            return array;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace _2021_Sortieralgorithmen
         Insertionsort myInsertionSort = new Insertionsort();
         Bubblesort myBubbleSort = new Bubblesort();
         MergeSort myMergeSort = new MergeSort();
-        QuickSortShort myQuickSort = new QuickSortShort();
+        QuickSort myQuickSort = new QuickSort();
         double zeitdauer = 0;
         double startzeit = 0;
         double endzeit = 0;
@@ -154,7 +154,7 @@ namespace _2021_Sortieralgorithmen
             textBoxInfo.Text += "Beginn Zeit: " + beginnTimeString + "\r\n";
 
             //Sortierung
-            array = myQuickSort.quickSort(array);
+            array = myQuickSort.quickSort(array,textBox1);
            
             //Zeiterfassung
             var endTime = DateTime.UtcNow;
